@@ -12,7 +12,7 @@ class HomePage extends Component {
       .then(articles => this.setState({ articles: articles.articles }));
   }
 
-  getArticleOfEachTopic = () => {
+  filterArticles = () => {
     const { articles } = this.state;
     const filteredArticles = [];
     const articleTally = {};
@@ -22,7 +22,7 @@ class HomePage extends Component {
         filteredArticles.push(article);
       }
     });
-    return <ArticleCard articles={filteredArticles} />;
+    return filteredArticles;
   };
 
   render() {
@@ -32,7 +32,9 @@ class HomePage extends Component {
         <h1>Beans</h1>
         <p>Logged in as: {user}</p>
         <Link to="/articles">All Articles</Link>
-        <ul>{this.getArticleOfEachTopic()}</ul>
+        <ul>
+          <ArticleCard articles={this.filterArticles()} />
+        </ul>
       </section>
     );
   }
