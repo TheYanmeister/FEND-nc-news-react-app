@@ -1,13 +1,15 @@
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: "url here"
+  baseURL: "https://the-best-nc-news-app.herokuapp.com/api"
 });
 
-export const functionName = topic => {
-  return request
-    .get("path here", { params: { topic } }) // ?topic=football
-    .then(({ data }) => data);
+export const fetchAllArticles = () => {
+  return request.get("/articles").then(({ data }) => data);
 };
 
-// when importing do it as "import * as api from 'api.js' so when a function is called it is done by api.function"
+export const fetchArticleById = article_id => {
+  return request.get(`/articles/${article_id}`).then(({ data }) => data);
+};
+
+// when importing do it as "import * as api from 'api.js'" so when a function is called it is done by api.function"
