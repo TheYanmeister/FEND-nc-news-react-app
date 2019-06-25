@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api.js";
+import ArticleCard from "./ArticleCard";
 
 class HomePage extends Component {
   state = { articles: [], user: "jessjelly" };
@@ -13,28 +14,15 @@ class HomePage extends Component {
 
   getArticleOfEachTopic = () => {
     const { articles } = this.state;
-    const topicTally = {};
-    // eslint-disable-next-line
-    return articles.map(article => {
-      if (topicTally[article.topic] === undefined) {
-        topicTally[article.topic] = 1;
-        return (
-          <li key={article.article_id}>
-            <h3>
-              In {article.topic}: {article.title}
-            </h3>
-            <p>
-              {article.body.slice(0, article.body.indexOf(".") + 1)}.. <br />
-              <Link to={`/articles/${article.article_id}`}>
-                (click to read the full article)
-              </Link>
-            </p>
-            <p>Author: {article.author}</p>
-            <br />
-          </li>
-        );
+    const filteredArticles = [];
+    const articleTally = {};
+    articles.forEach(article => {
+      if (!articleTally.hasOwnProperty(article.topic)) {
+        articleTally[article.topic] = 1;
+        filteredArticles.push(article);
       }
     });
+    return <ArticleCard articles={filteredArticles} />;
   };
 
   render() {
