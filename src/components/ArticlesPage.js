@@ -32,9 +32,13 @@ class ArticlesPage extends Component {
     const { orderBy } = this.state;
     const sortedArticles = [...articles];
     if (orderBy === "date") return articles;
-    else {
+    else if (orderBy === "comments") {
       return sortedArticles.sort((a, b) => {
         return b.comment_count - a.comment_count;
+      });
+    } else {
+      return sortedArticles.sort((a, b) => {
+        return b.votes - a.votes;
       });
     }
   };
