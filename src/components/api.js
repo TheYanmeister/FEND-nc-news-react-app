@@ -12,4 +12,10 @@ export const fetchArticleById = article_id => {
   return request.get(`/articles/${article_id}`).then(({ data }) => data);
 };
 
+export const fetchCommentsByArticle = article_id => {
+  return request
+    .get(`/articles/${article_id}/comments`)
+    .then(({ data }) => data);
+};
+
 // when importing do it as "import * as api from 'api.js'" so when a function is called it is done by api.function"
