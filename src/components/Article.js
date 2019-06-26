@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api.js";
+import VoteButtons from "./VoteButtons";
 
 class Article extends Component {
   state = { articleById: { created_at: "" }, comments: [] };
@@ -47,6 +48,10 @@ class Article extends Component {
         </h4>
         <p>{articleById.body}</p>
         <h4>Author: {articleById.author}</h4>
+        <VoteButtons
+          votes={articleById.votes}
+          article_id={articleById.article_id}
+        />
         <Link to="/">Home</Link>
         {" - "}
         <Link to="/articles">Articles</Link>
