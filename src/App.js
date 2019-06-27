@@ -17,9 +17,9 @@ class App extends Component {
       <div className="App">
         <Router>
           <HomePage path="/" user={user} />
-          <ArticlesPage path="/articles" user={user} />
+          <ArticlesPage path="/articles" />
           <PostArticle path="/articles/post" user={user} />
-          <Article path="/articles/:article_id" />
+          <Article path="/articles/:article_id" user={user} />
           <NotFound default />
         </Router>
       </div>

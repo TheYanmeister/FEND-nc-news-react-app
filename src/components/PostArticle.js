@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
+import * as api from "./api.js";
 
 class PostArticle extends Component {
   state = {
@@ -15,6 +16,9 @@ class PostArticle extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { user } = this.props;
+    const { currentBody, currentTitle, currentTopic } = this.state;
+    api.postArticle(user, currentTitle, currentTopic, currentBody);
     this.setState({ currentBody: "", currentTitle: "", currentTopic: "" });
   };
 
@@ -28,7 +32,15 @@ class PostArticle extends Component {
         <Link to="/articles">All Articles</Link>
         <br />
         <br />
-        <form onSubmit={this.handleSubmit}>
+        <form
+          onSubmit={this.handleSubmit}
+          disabled={
+            currentBody === "" ||
+            currentTitle === "" ||
+            currentTopic === "" ||
+            !currentBody.includes(".")
+          }
+        >
           <label>
             Title:
             <input
@@ -67,7 +79,16 @@ class PostArticle extends Component {
             />
           </label>
           <br />
-          <button>Submit Article</button>
+          <button
+            disabled={
+              currentBody === "" ||
+              currentTitle === "" ||
+              currentTopic === "" ||
+              !currentBody.includes(".")
+            }
+          >
+            Submit Article
+          </button>
         </form>
       </section>
     );
