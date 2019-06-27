@@ -47,6 +47,8 @@ class ArticlesPage extends Component {
     return (
       <section>
         <Link to="/">Home</Link>
+        {" - "}
+        <Link to="/articles/post">Post an Article</Link>
         <br />
         <br />
         <p>

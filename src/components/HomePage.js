@@ -32,6 +32,8 @@ class HomePage extends Component {
         <h1>Beans</h1>
         <p>Logged in as: {user}</p>
         <Link to="/articles">All Articles</Link>
+        {" - "}
+        <Link to="/articles/post">Post an Article</Link>
         <ul>
           <ArticleCard articles={this.filterArticles()} />
         </ul>

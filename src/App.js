@@ -4,6 +4,7 @@ import { Router } from "@reach/router";
 import NotFound from "./components/NotFound";
 import ArticlesPage from "./components/ArticlesPage";
 import Article from "./components/Article";
+import PostArticle from "./components/PostArticle";
 
 class App extends Component {
   state = {
@@ -16,8 +17,9 @@ class App extends Component {
       <div className="App">
         <Router>
           <HomePage path="/" user={user} />
-          <ArticlesPage path="/articles" />
-          <Article path="/articles/:article_id" user={user} />
+          <ArticlesPage path="/articles" user={user} />
+          <PostArticle path="/articles/post" user={user} />
+          <Article path="/articles/:article_id" />
           <NotFound default />
         </Router>
       </div>
