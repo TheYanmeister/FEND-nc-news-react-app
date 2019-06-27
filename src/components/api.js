@@ -18,4 +18,10 @@ export const fetchCommentsByArticle = article_id => {
     .then(({ data }) => data);
 };
 
+export const patchVotesForArticle = (article_id, voteChange) => {
+  return request
+    .patch(`articles/${article_id}`, { inc_votes: voteChange })
+    .then(({ data }) => data);
+};
+
 // when importing do it as "import * as api from 'api.js'" so when a function is called it is done by api.function"

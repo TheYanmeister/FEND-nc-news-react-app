@@ -35,6 +35,17 @@ class Article extends Component {
     ));
   };
 
+  renderVoteButtons = () => {
+    const { articleById } = this.state;
+    if (articleById.votes !== undefined)
+      return (
+        <VoteButtons
+          votes={articleById.votes}
+          article_id={articleById.article_id}
+        />
+      );
+  };
+
   render() {
     const { articleById } = this.state;
     const createdAt = articleById.created_at
@@ -48,10 +59,7 @@ class Article extends Component {
         </h4>
         <p>{articleById.body}</p>
         <h4>Author: {articleById.author}</h4>
-        <VoteButtons
-          votes={articleById.votes}
-          article_id={articleById.article_id}
-        />
+        <>{this.renderVoteButtons()}</>
         <Link to="/">Home</Link>
         {" - "}
         <Link to="/articles">Articles</Link>
