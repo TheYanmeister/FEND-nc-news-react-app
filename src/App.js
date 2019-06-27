@@ -17,7 +17,7 @@ class App extends Component {
         <Router>
           <HomePage path="/" user={user} />
           <ArticlesPage path="/articles" />
-          <Article path="/articles/:article_id" />
+          <Article path="/articles/:article_id" user={user} />
           <NotFound default />
         </Router>
       </div>
@@ -26,5 +26,3 @@ class App extends Component {
 }
 
 export default App;
-
-// anything with a path with a colon e.g. ':id' that will be passed down in params

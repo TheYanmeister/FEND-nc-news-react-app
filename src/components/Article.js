@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api.js";
 import VoteButtons from "./VoteButtons";
+import PostComment from "./PostComment";
 
 class Article extends Component {
   state = { articleById: { created_at: "" }, comments: [] };
@@ -30,7 +31,7 @@ class Article extends Component {
     const { comments } = this.state;
     return comments.map(comment => (
       <p key={comment.comment_id}>
-        {comment.body} <br /> {comment.author}{" "}
+        {comment.body} <br /> User: {comment.author}{" "}
       </p>
     ));
   };
@@ -46,8 +47,19 @@ class Article extends Component {
       );
   };
 
+  pushComment = commentBody => {
+    const { user, article_id } = this.props;
+    this.setState(prevState => ({
+      comments: [
+        { body: commentBody, author: user, comment_id: Date.now() },
+        ...prevState.comments
+      ]
+    }));
+    api.postCommentToArticle(article_id, user, commentBody);
+  };
+
   render() {
-    const { articleById } = this.state;
+    const { articleById, comments } = this.state;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
       .slice(0, -8);
@@ -64,7 +76,8 @@ class Article extends Component {
         {" - "}
         <Link to="/articles">Articles</Link>
         <h2>Comments</h2>
-        <p>Number of comments: {articleById.comment_count}</p>
+        <PostComment pushComment={this.pushComment} />
+        <p>Number of comments: {comments.length}</p>
         <>{this.formatComments()}</>
       </section>
     );

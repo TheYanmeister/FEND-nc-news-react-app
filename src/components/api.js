@@ -24,4 +24,8 @@ export const patchVotesForArticle = (article_id, voteChange) => {
     .then(({ data }) => data);
 };
 
-// when importing do it as "import * as api from 'api.js'" so when a function is called it is done by api.function"
+export const postCommentToArticle = (article_id, username, body) => {
+  return request
+    .post(`articles/${article_id}/comments`, { body, username })
+    .then(({ data }) => data);
+};
