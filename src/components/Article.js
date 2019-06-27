@@ -29,20 +29,32 @@ class Article extends Component {
 
   formatComments = () => {
     const { comments } = this.state;
+    const { user } = this.props;
     return comments.map(comment => (
-      <p key={comment.comment_id}>
-        {comment.body} <br /> User: {comment.author}{" "}
-      </p>
+      <li key={comment.comment_id}>
+        {comment.body} <br /> User: {comment.author} <br />{" "}
+        <VoteButtons
+          votes={comment.votes}
+          comment_id={comment.comment_id}
+          isComment={true}
+          author={comment.author}
+          user={user}
+        />
+      </li>
     ));
   };
 
   renderVoteButtons = () => {
     const { articleById } = this.state;
+    const { user } = this.props;
     if (articleById.votes !== undefined)
       return (
         <VoteButtons
           votes={articleById.votes}
           article_id={articleById.article_id}
+          isComment={false}
+          author={articleById.author}
+          user={user}
         />
       );
   };
@@ -51,7 +63,7 @@ class Article extends Component {
     const { user, article_id } = this.props;
     this.setState(prevState => ({
       comments: [
-        { body: commentBody, author: user, comment_id: Date.now() },
+        { body: commentBody, author: user, comment_id: Date.now(), votes: 0 },
         ...prevState.comments
       ]
     }));
@@ -78,7 +90,7 @@ class Article extends Component {
         <h2>Comments</h2>
         <PostComment pushComment={this.pushComment} />
         <p>Number of comments: {comments.length}</p>
-        <>{this.formatComments()}</>
+        <ul>{this.formatComments()}</ul>
       </section>
     );
   }

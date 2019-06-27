@@ -24,6 +24,12 @@ export const patchVotesForArticle = (article_id, voteChange) => {
     .then(({ data }) => data);
 };
 
+export const patchVotesForComment = (comment_id, voteChange) => {
+  return request
+    .patch(`comments/${comment_id}`, { inc_votes: voteChange })
+    .then(({ data }) => data);
+};
+
 export const postCommentToArticle = (article_id, username, body) => {
   return request
     .post(`articles/${article_id}/comments`, { body, username })

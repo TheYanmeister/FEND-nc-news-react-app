@@ -7,7 +7,7 @@ import Article from "./components/Article";
 
 class App extends Component {
   state = {
-    user: "jessjelly"
+    user: "weegembump"
   };
 
   render() {

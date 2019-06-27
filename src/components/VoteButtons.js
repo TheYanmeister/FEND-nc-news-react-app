@@ -21,28 +21,32 @@ class VoteButtons extends Component {
 
   updateVotes = () => {
     const { voteChange } = this.state;
-    const { article_id } = this.props;
-    api.patchVotesForArticle(article_id, voteChange);
+    const { article_id, isComment, comment_id } = this.props;
+    if (isComment === false)
+      return api.patchVotesForArticle(article_id, voteChange);
+    else if (isComment === true)
+      return api.patchVotesForComment(comment_id, voteChange);
   };
 
   componentDidMount() {
-    this.setState({ displayVotes: this.props.votes });
+    const { votes } = this.props;
+    this.setState({ displayVotes: votes });
   }
 
   render() {
     const { displayVotes } = this.state;
-    const { votes } = this.props;
+    const { votes, user, author } = this.props;
     return (
       <section>
         <button
-          disabled={displayVotes === votes + 1}
+          disabled={displayVotes === votes + 1 || user === author}
           onClick={() => this.handleVotes(1)}
         >
           Vote up
         </button>
-        <p>Votes: {displayVotes}</p>
+        Votes: {displayVotes}
         <button
-          disabled={displayVotes === votes - 1}
+          disabled={displayVotes === votes - 1 || user === author}
           onClick={() => this.handleVotes(-1)}
         >
           Vote down
