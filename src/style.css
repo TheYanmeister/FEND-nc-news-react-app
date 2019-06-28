@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+  font-family: "Fira Sans Condensed", sans-serif;
+  text-align: center;
+  background: beige;
+}
+
+.homePage_header {
+  font-family: "Overpass", sans-serif;
+  font-size: 50px;
+  padding: 10px;
+}
+
+.homePage_user {
+  font-size: 20px;
+  padding: 20px;
+}
+
+.homePage_links {
+  padding-bottom: 50px;
+}
+
+.articleCards {
+  padding: 20px;
+}
+
+.articleCards_title {
+  font-size: 25px;
+}
+
+.articleCards_author {
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+.articleCards_body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  padding-bottom: 10px;
+}

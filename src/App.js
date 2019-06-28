@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound";
 import ArticlesPage from "./components/ArticlesPage";
 import Article from "./components/Article";
 import PostArticle from "./components/PostArticle";
+import "./style.css";
 
 class App extends Component {
   state = {

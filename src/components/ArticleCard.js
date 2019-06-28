@@ -4,19 +4,22 @@ import { Link } from "@reach/router";
 const formatArticleCard = props => {
   return props.articles.map(article => {
     return (
-      <li key={article.article_id}>
-        <h3>
+      <section key={article.article_id} className="articleCards">
+        <h3 className="articleCards_title">
           In {article.topic}: {article.title}
         </h3>
+        <p className="articleCards_body">
+          {article.body.slice(0, article.body.indexOf(".") + 1)}..{" "}
+        </p>
         <p>
-          {article.body.slice(0, article.body.indexOf(".") + 1)}.. <br />
+          {" "}
           <Link to={`/articles/${article.article_id}`}>
             (click to read the full article)
           </Link>
         </p>
-        <p>Author: {article.author}</p>
+        <p className="articleCards_author">Author: {article.author}</p>
         <br />
-      </li>
+      </section>
     );
   });
 };

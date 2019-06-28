@@ -4,7 +4,7 @@ import * as api from "./api.js";
 import ArticleCard from "./ArticleCard";
 
 class HomePage extends Component {
-  state = { articles: [], user: "jessjelly" };
+  state = { articles: [] };
 
   componentDidMount() {
     api
@@ -26,17 +26,19 @@ class HomePage extends Component {
   };
 
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
     return (
-      <section>
-        <h1>Beans</h1>
-        <p>Logged in as: {user}</p>
-        <Link to="/articles">All Articles</Link>
-        {" - "}
-        <Link to="/articles/post">Post an Article</Link>
-        <ul>
+      <section className="homePage">
+        <h1 className="homePage_header">Northcoders News</h1>
+        <p className="homePage_user">Logged in as: {user}</p>
+        <p className="homePage_links">
+          <Link to="/articles">All Articles</Link>
+          {" - "}
+          <Link to="/articles/post">Post an Article</Link>
+        </p>
+        <section>
           <ArticleCard articles={this.filterArticles()} />
-        </ul>
+        </section>
       </section>
     );
   }

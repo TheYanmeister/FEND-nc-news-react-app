@@ -46,6 +46,7 @@ class ArticlesPage extends Component {
   render() {
     return (
       <section>
+        <h1>Articles</h1>
         <Link to="/">Home</Link>
         {" - "}
         <Link to="/articles/post">Post an Article</Link>
