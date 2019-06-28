@@ -46,7 +46,7 @@ class ArticlesPage extends Component {
   render() {
     return (
       <section>
-        <h1>Articles</h1>
+        <h1 className="articlesPage_header">Articles</h1>
         <Link to="/">Home</Link>
         {" - "}
         <Link to="/articles/post">Post an Article</Link>
