@@ -47,12 +47,14 @@ class ArticlesPage extends Component {
     return (
       <section>
         <h1 className="articlesPage_header">Articles</h1>
-        <Link to="/">Home</Link>
-        {" - "}
-        <Link to="/articles/post">Post an Article</Link>
+        <section className="articlesPage_links">
+          <Link to="/">Home</Link>
+          {" - "}
+          <Link to="/articles/post">Post an Article</Link>
+        </section>
         <br />
         <br />
-        <p>
+        <p className="articlesPage_filterAndOrderBoxes">
           Filter By:{" "}
           <select
             name="topic_filter"
