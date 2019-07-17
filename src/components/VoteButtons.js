@@ -36,24 +36,26 @@ class VoteButtons extends Component {
   render() {
     const { displayVotes } = this.state;
     const { votes, user, author } = this.props;
-    return (
-      <section>
-        <button
-          disabled={displayVotes === votes + 1 || user === author}
-          onClick={() => this.handleVotes(1)}
-        >
-          Vote up
-        </button>
-        Votes: {displayVotes}
-        <button
-          disabled={displayVotes === votes - 1 || user === author}
-          onClick={() => this.handleVotes(-1)}
-        >
-          Vote down
-        </button>
-        <br />
-      </section>
-    );
+    if (user !== author) {
+      return (
+        <section>
+          <button
+            disabled={displayVotes === votes + 1 || user === author}
+            onClick={() => this.handleVotes(1)}
+          >
+            Vote up
+          </button>{" "}
+          Votes: {displayVotes}{" "}
+          <button
+            disabled={displayVotes === votes - 1 || user === author}
+            onClick={() => this.handleVotes(-1)}
+          >
+            Vote down
+          </button>
+          <br />
+        </section>
+      );
+    } else return <section>Votes: {displayVotes}</section>;
   }
 }
 

@@ -31,6 +31,9 @@ class HomePage extends Component {
       <section className="homePage">
         <h1 className="homePage_header">Northcoders News</h1>
         <p className="homePage_user">Logged in as: {user}</p>
+        <p className="homePage_msg">
+          Reminder that you may not up/down vote your own articles or comments
+        </p>
         <p className="homePage_links">
           <Link to="/articles">All Articles</Link>
           {" - "}
