@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 import * as api from "./api.js";
 import VoteButtons from "./VoteButtons";
 import PostComment from "./PostComment";
+import DeleteButton from "./DeleteButton";
 
 class Article extends Component {
   state = { articleById: { created_at: "" }, comments: [] };
@@ -27,11 +28,13 @@ class Article extends Component {
     return formattedDate.join("-");
   };
 
+  handleDelete = () => {};
+
   formatComments = () => {
     const { comments } = this.state;
     const { user } = this.props;
     return comments.map(comment => (
-      <li key={comment.comment_id}>
+      <li key={comment.comment_id} className="articleComments_deleteButton">
         {comment.body} <br /> User: {comment.author} <br />{" "}
         <VoteButtons
           votes={comment.votes}
@@ -39,6 +42,11 @@ class Article extends Component {
           isComment={true}
           author={comment.author}
           user={user}
+        />
+        <DeleteButton
+          user={user}
+          author={comment.author}
+          handleDelete={this.handleDelete}
         />
       </li>
     ));

@@ -52,7 +52,6 @@ class VoteButtons extends Component {
           Vote down
         </button>
         <br />
-        <br />
       </section>
     );
   }
