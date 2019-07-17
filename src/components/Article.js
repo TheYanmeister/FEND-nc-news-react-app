@@ -28,7 +28,16 @@ class Article extends Component {
     return formattedDate.join("-");
   };
 
-  handleDelete = () => {};
+  handleCommentDelete = event => {
+    const { value } = event.target;
+    api.deleteComment(value).then(
+      this.setState(prevState => ({
+        comments: prevState.comments.filter(
+          comment => comment.comment_id !== +value
+        )
+      }))
+    );
+  };
 
   formatComments = () => {
     const { comments } = this.state;
@@ -46,7 +55,8 @@ class Article extends Component {
         <DeleteButton
           user={user}
           author={comment.author}
-          handleDelete={this.handleDelete}
+          handleCommentDelete={this.handleCommentDelete}
+          comment_id={comment.comment_id}
         />
       </li>
     ));

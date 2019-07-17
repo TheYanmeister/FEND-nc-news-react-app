@@ -42,6 +42,6 @@ export const postArticle = (author, title, topic, body) => {
     .then(({ data }) => data);
 };
 
-export const deleteComment = () => {
-  return request.delete("articles").then(({ data }) => data);
+export const deleteComment = comment_id => {
+  return request.delete(`comments/${comment_id}`).then(({ data }) => data);
 };
