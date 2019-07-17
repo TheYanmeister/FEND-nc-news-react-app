@@ -79,13 +79,13 @@ class Article extends Component {
 
   pushComment = commentBody => {
     const { user, article_id } = this.props;
-    this.setState(prevState => ({
-      comments: [
-        { body: commentBody, author: user, comment_id: Date.now(), votes: 0 },
-        ...prevState.comments
-      ]
-    }));
-    api.postCommentToArticle(article_id, user, commentBody);
+    api
+      .postCommentToArticle(article_id, user, commentBody)
+      .then(({ comment }) => {
+        this.setState(prevState => ({
+          comments: [comment, ...prevState.comments]
+        }));
+      });
   };
 
   render() {
