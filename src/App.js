@@ -16,6 +16,7 @@ class App extends Component {
     const { user } = this.state;
     return (
       <div className="App">
+        <h1 className="header">Northcoders News</h1>
         <Router>
           <HomePage path="/" user={user} />
           <ArticlesPage path="/articles" />

@@ -17,7 +17,7 @@ class PostComment extends Component {
     const { userComment } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
+        <label className="postComment_postCommentBox">
           Comment:{" "}
           <input type="text" value={userComment} onChange={this.handleChange} />
         </label>{" "}

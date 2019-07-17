@@ -6,12 +6,14 @@
   font-family: "Fira Sans Condensed", sans-serif;
   text-align: center;
   background: beige;
+  font-size: 18px;
 }
 
-.homePage_header {
+.header {
   font-family: "Overpass", sans-serif;
   font-size: 50px;
   padding: 10px;
+  text-decoration: underline;
 }
 
 .homePage_user {
@@ -49,7 +51,7 @@
 
 .articlesPage_header {
   font-family: "Overpass", sans-serif;
-  font-size: 50px;
+  font-size: 45px;
   padding-top: 10px;
   padding-bottom: 25px;
 }
@@ -62,6 +64,55 @@
   padding-bottom: 20px;
 }
 
-.articleComments_deleteButton {
-  padding-bottom: 20px;
+.article_links {
+  padding-top: 20px;
+  padding-bottom: 55px;
+  font-size: 20px;
+}
+
+.article_title {
+  font-size: 30px;
+  padding-bottom: 10px;
+}
+
+.article_dateTime {
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+
+.article_body {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.article_author {
+  padding: 10px;
+}
+
+.article_voteButtons {
+  padding-bottom: 50px;
+}
+
+.articleComments_header {
+  font-size: 30px;
+  padding-bottom: 25px;
+}
+
+.articleComments_body {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.articleComments_author {
+  padding-bottom: 0px;
+}
+
+.articleComments_numOfComments {
+  padding-bottom: 40px;
+  padding-top: 15px;
+  font-size: 22px;
+}
+
+.postComment_postCommentBox {
+  font-size: 25px;
 }

@@ -43,8 +43,12 @@ class Article extends Component {
     const { comments } = this.state;
     const { user } = this.props;
     return comments.map(comment => (
-      <li key={comment.comment_id} className="articleComments_deleteButton">
-        {comment.body} <br /> User: {comment.author} <br />{" "}
+      <li key={comment.comment_id}>
+        <p className="articleComments_body">{comment.body}</p>
+        <br /> <p className="articleComments_author">
+          User: {comment.author}
+        </p>{" "}
+        <br />{" "}
         <VoteButtons
           votes={comment.votes}
           comment_id={comment.comment_id}
@@ -52,12 +56,14 @@ class Article extends Component {
           author={comment.author}
           user={user}
         />
-        <DeleteButton
-          user={user}
-          author={comment.author}
-          handleCommentDelete={this.handleCommentDelete}
-          comment_id={comment.comment_id}
-        />
+        <section className="articleComments_deleteButton">
+          <DeleteButton
+            user={user}
+            author={comment.author}
+            handleCommentDelete={this.handleCommentDelete}
+            comment_id={comment.comment_id}
+          />
+        </section>
       </li>
     ));
   };
@@ -65,7 +71,7 @@ class Article extends Component {
   renderVoteButtons = () => {
     const { articleById } = this.state;
     const { user } = this.props;
-    if (articleById.votes !== undefined)
+    if (articleById.votes !== undefined) {
       return (
         <VoteButtons
           votes={articleById.votes}
@@ -75,6 +81,7 @@ class Article extends Component {
           user={user}
         />
       );
+    }
   };
 
   pushComment = commentBody => {
@@ -95,19 +102,25 @@ class Article extends Component {
       .slice(0, -8);
     return (
       <section>
-        <h1>{articleById.title}</h1>
-        <h4>
+        <section className="article_links">
+          <Link to="/">Home</Link>
+          {" - "}
+          <Link to="/articles">Articles</Link>
+        </section>
+        <h1 className="article_title">{articleById.title}</h1>
+        <h4 className="article_dateTime">
           Posted on: {this.formatDate(createdAt)} At: {createdAt.slice(11)}
         </h4>
-        <p>{articleById.body}</p>
-        <h4>Author: {articleById.author}</h4>
-        <>{this.renderVoteButtons()}</>
-        <Link to="/">Home</Link>
-        {" - "}
-        <Link to="/articles">Articles</Link>
-        <h2>Comments</h2>
-        <PostComment pushComment={this.pushComment} />
-        <p>Number of comments: {comments.length}</p>
+        <p className="article_body">{articleById.body}</p>
+        <h4 className="article_author">Author: {articleById.author}</h4>
+        <section className="article_voteButtons">
+          {this.renderVoteButtons()}
+        </section>
+        <h2 className="articleComments_header">Comments</h2>
+        <PostComment pushComment={this.pushComment} />{" "}
+        <p className="articleComments_numOfComments">
+          Number of comments: {comments.length}
+        </p>
         <ul>{this.formatComments()}</ul>
       </section>
     );
