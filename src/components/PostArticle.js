@@ -88,6 +88,7 @@ class PostArticle extends Component {
           <br />
           <br />
           <button
+            className="postArticle_submitButton"
             disabled={
               currentBody === "" ||
               currentTitle === "" ||

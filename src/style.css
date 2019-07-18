@@ -150,3 +150,9 @@
 .postArticle_bodyBox {
   width: 1300px;
 }
+
+.postArticle_submitButton {
+  text-transform: uppercase;
+  background: #ed3330;
+  padding: 5px;
+}

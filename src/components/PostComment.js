@@ -16,12 +16,17 @@ class PostComment extends Component {
   render() {
     const { userComment } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} disabled={userComment === ""}>
         <label className="postComment_postCommentBox">
           Comment:{" "}
-          <input type="text" value={userComment} onChange={this.handleChange} />
+          <input
+            type="text"
+            value={userComment}
+            onChange={this.handleChange}
+            placeholder="required"
+          />
         </label>{" "}
-        <button>Submit Comment</button>
+        <button disabled={userComment === ""}>Submit Comment</button>
       </form>
     );
   }
