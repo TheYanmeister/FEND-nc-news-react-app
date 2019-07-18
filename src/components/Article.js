@@ -49,13 +49,15 @@ class Article extends Component {
           User: {comment.author}
         </p>{" "}
         <br />{" "}
-        <VoteButtons
-          votes={comment.votes}
-          comment_id={comment.comment_id}
-          isComment={true}
-          author={comment.author}
-          user={user}
-        />
+        <section className="articlesComments_voteButtons">
+          <VoteButtons
+            votes={comment.votes}
+            comment_id={comment.comment_id}
+            isComment={true}
+            author={comment.author}
+            user={user}
+          />
+        </section>
         <section className="articleComments_deleteButton">
           <DeleteButton
             user={user}

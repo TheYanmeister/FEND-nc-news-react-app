@@ -47,6 +47,8 @@
   font-family: "Source Sans Pro", sans-serif;
   font-size: 18px;
   padding-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .articlesPage_header {
@@ -115,4 +117,36 @@
 
 .postComment_postCommentBox {
   font-size: 25px;
+}
+
+.articlesComments_voteButtons {
+  padding-bottom: 10px;
+}
+
+.articleComments_deleteButton {
+  padding-bottom: 30px;
+}
+
+.postArticle_header {
+  font-size: 40px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.postArticle_links {
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.postArticle_form {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.postArticle_titleBox {
+  width: 1300px;
+}
+
+.postArticle_bodyBox {
+  width: 1300px;
 }

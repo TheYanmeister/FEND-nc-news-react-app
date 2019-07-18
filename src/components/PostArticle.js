@@ -26,13 +26,16 @@ class PostArticle extends Component {
     const { currentBody, currentTitle, currentTopic } = this.state;
     return (
       <section>
-        <h1>Post an Article</h1>
-        <Link to={"/"}>Home</Link>
-        {" - "}
-        <Link to="/articles">All Articles</Link>
+        <h1 className="postArticle_header">Post an Article</h1>
+        <p className="postArticle_links">
+          <Link to={"/"}>Home</Link>
+          {" - "}
+          <Link to="/articles">All Articles</Link>
+        </p>
         <br />
         <br />
         <form
+          className="postArticle_form"
           onSubmit={this.handleSubmit}
           disabled={
             currentBody === "" ||
@@ -50,8 +53,10 @@ class PostArticle extends Component {
               onChange={this.handleChange}
               value={currentTitle}
               autoComplete="off"
+              className="postArticle_titleBox"
             />
           </label>
+          <br />
           <br />
           <label>
             Topic:
@@ -67,9 +72,11 @@ class PostArticle extends Component {
             </select>
           </label>
           <br />
+          <br />
           <label>
             Body:
             <input
+              className="postArticle_bodyBox"
               type="text"
               name="currentBody"
               placeholder="body"
@@ -78,6 +85,7 @@ class PostArticle extends Component {
               autoComplete="off"
             />
           </label>
+          <br />
           <br />
           <button
             disabled={
