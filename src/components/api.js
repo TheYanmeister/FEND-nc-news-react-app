@@ -9,7 +9,9 @@ export const fetchAllArticles = () => {
 };
 
 export const fetchArticleById = article_id => {
-  return request.get(`/articles/${article_id}`).then(({ data }) => data);
+  return request
+    .get(`/articles/${article_id}`)
+    .then(({ data }) => data.article);
 };
 
 export const fetchCommentsByArticle = article_id => {

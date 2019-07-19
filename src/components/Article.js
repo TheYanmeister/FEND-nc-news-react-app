@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import * as api from "./api.js";
 import VoteButtons from "./VoteButtons";
 import PostComment from "./PostComment";
@@ -9,13 +9,14 @@ class Article extends Component {
   state = { articleById: { created_at: "" }, comments: [], error: false };
 
   componentDidMount() {
-    api.fetchArticleById(this.props.article_id).then(
-      article => this.setState({ articleById: article.article }),
-      () => {
-        if (this.state.articleById.created_at === "")
-          return this.setState({ error: 404 });
-      }
-    );
+    api
+      .fetchArticleById(this.props.article_id)
+      .then(article => this.setState({ articleById: article }))
+      .catch(error => {
+        const { status } = error.response;
+        if (status === 404) navigate("/404");
+        if (status === 400) navigate("/articles/badrequest");
+      });
     api
       .fetchCommentsByArticle(this.props.article_id)
       .then(comments => this.setState({ comments: comments.comments }));
@@ -99,43 +100,34 @@ class Article extends Component {
   };
 
   render() {
-    const { articleById, comments, error } = this.state;
+    const { articleById, comments } = this.state;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
       .slice(0, -8);
-    if (error === false) {
-      return (
-        <section>
-          <section className="article_links">
-            <Link to="/">Home</Link>
-            {" - "}
-            <Link to="/articles">Articles</Link>
-          </section>
-          <h1 className="article_title">{articleById.title}</h1>
-          <h4 className="article_dateTime">
-            Posted on: {this.formatDate(createdAt)} At: {createdAt.slice(11)}
-          </h4>
-          <p className="article_body">{articleById.body}</p>
-          <h4 className="article_author">Author: {articleById.author}</h4>
-          <section className="article_voteButtons">
-            {this.renderVoteButtons()}
-          </section>
-          <h2 className="articleComments_header">Comments</h2>
-          <PostComment pushComment={this.pushComment} />{" "}
-          <p className="articleComments_numOfComments">
-            Number of comments: {comments.length}
-          </p>
-          <ul>{this.formatComments()}</ul>
-        </section>
-      );
-    } else if (error === 404) {
-      return (
-        <section>
-          <p>404 article not found</p>
+    return (
+      <section>
+        <section className="article_links">
           <Link to="/">Home</Link>
+          {" - "}
+          <Link to="/articles">Articles</Link>
         </section>
-      );
-    }
+        <h1 className="article_title">{articleById.title}</h1>
+        <h4 className="article_dateTime">
+          Posted on: {this.formatDate(createdAt)} At: {createdAt.slice(11)}
+        </h4>
+        <p className="article_body">{articleById.body}</p>
+        <h4 className="article_author">Author: {articleById.author}</h4>
+        <section className="article_voteButtons">
+          {this.renderVoteButtons()}
+        </section>
+        <h2 className="articleComments_header">Comments</h2>
+        <PostComment pushComment={this.pushComment} />{" "}
+        <p className="articleComments_numOfComments">
+          Number of comments: {comments.length}
+        </p>
+        <ul>{this.formatComments()}</ul>
+      </section>
+    );
   }
 }
 
