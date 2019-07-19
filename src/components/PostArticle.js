@@ -32,6 +32,7 @@ class PostArticle extends Component {
           {" - "}
           <Link to="/articles">All Articles</Link>
         </p>
+        <p>All fields are required</p>
         <br />
         <br />
         <form
@@ -84,6 +85,8 @@ class PostArticle extends Component {
               value={currentBody}
               autoComplete="off"
             />
+            <br />
+            This field must contain at least one period [ . ]
           </label>
           <br />
           <br />
