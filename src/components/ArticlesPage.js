@@ -6,26 +6,31 @@ import ArticleCard from "./ArticleCard";
 class ArticlesPage extends Component {
   state = {
     articles: [],
-    topicFilter: "all",
-    orderBy: "date"
+    topicFilter: "",
+    orderBy: "created_at"
   };
 
   componentDidMount() {
+    const { topicFilter, orderBy } = this.state;
     api
-      .fetchAllArticles()
-      .then(articles => this.setState({ articles: articles.articles }));
+      .fetchOrderedArticlesByTopic(topicFilter, orderBy)
+      .then(articles => this.setState({ articles }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { topicFilter, orderBy } = this.state;
+    if (
+      prevState.topicFilter !== topicFilter ||
+      prevState.orderBy !== orderBy
+    ) {
+      api
+        .fetchOrderedArticlesByTopic(topicFilter, orderBy)
+        .then(articles => this.setState({ articles }));
+    }
   }
 
   listArticles = () => {
-    let articles = this.filterArticles();
-    articles = this.orderArticles(articles);
-    return <ArticleCard articles={articles} />;
-  };
-
-  filterArticles = () => {
-    const { topicFilter, articles } = this.state;
-    if (topicFilter === "all") return articles;
-    else return articles.filter(article => article.topic === topicFilter);
+    return <ArticleCard articles={this.state.articles} />;
   };
 
   orderArticles = articles => {
@@ -61,16 +66,16 @@ class ArticlesPage extends Component {
         <p className="articlesPage_filterAndOrderBoxes">
           Filter By:{" "}
           <select name="topicFilter" onChange={this.setFilter}>
-            <option value="all">All</option>
+            <option value="">All</option>
             <option value="cooking">Cooking</option>
             <option value="coding">Coding</option>
             <option value="football">Football</option>
           </select>{" "}
           Order By:
           <select name="orderBy" onChange={this.setFilter}>
-            <option value="date">Date Posted</option>
+            <option value="created_at">Date Posted</option>
             <option value="votes">Number of Votes</option>
-            <option value="comments">Number of Comments</option>
+            <option value="comment_count">Number of Comments</option>
           </select>
         </p>
         <ul>{this.listArticles()}</ul>

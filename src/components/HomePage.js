@@ -8,8 +8,8 @@ class HomePage extends Component {
 
   componentDidMount() {
     api
-      .fetchAllArticles()
-      .then(articles => this.setState({ articles: articles.articles }));
+      .fetchOrderedArticlesByTopic("", "created_at")
+      .then(articles => this.setState({ articles: articles }));
   }
 
   filterArticles = () => {

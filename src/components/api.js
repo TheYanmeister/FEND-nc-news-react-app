@@ -4,8 +4,10 @@ const request = axios.create({
   baseURL: "https://the-best-nc-news-app.herokuapp.com/api"
 });
 
-export const fetchAllArticles = () => {
-  return request.get("/articles").then(({ data }) => data);
+export const fetchOrderedArticlesByTopic = (topic, order) => {
+  return request
+    .get(`/articles?topic=${topic}&sort_by=${order}`)
+    .then(({ data }) => data.articles);
 };
 
 export const fetchArticleById = article_id => {
