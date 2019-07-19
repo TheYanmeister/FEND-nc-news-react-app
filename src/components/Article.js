@@ -6,12 +6,19 @@ import PostComment from "./PostComment";
 import FormatComments from "./FormatComments";
 
 class Article extends Component {
-  state = { articleById: { created_at: "" }, comments: [], error: false };
+  state = {
+    articleById: { created_at: "" },
+    comments: [],
+    error: false,
+    isLoading: true
+  };
 
   componentDidMount() {
     api
       .fetchArticleById(this.props.article_id)
-      .then(article => this.setState({ articleById: article }))
+      .then(article =>
+        this.setState({ articleById: article, isLoading: false })
+      )
       .catch(error => {
         const { status } = error.response;
         if (status === 404) navigate("/404");
@@ -53,49 +60,53 @@ class Article extends Component {
   };
 
   render() {
-    const { articleById, comments } = this.state;
+    const { articleById, comments, isLoading } = this.state;
     const { user } = this.props;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
       .slice(0, -8);
-    return (
-      <section>
-        <section className="article_links">
-          <Link to="/">Home</Link>
-          {" - "}
-          <Link to="/articles">Articles</Link>
-        </section>
-        <h1 className="article_title">{articleById.title}</h1>
-        <h4 className="article_dateTime">
-          Posted on: {this.formatDate(createdAt)} At: {createdAt.slice(11)}
-        </h4>
-        <p className="article_body">{articleById.body}</p>
-        <h4 className="article_author">Author: {articleById.author}</h4>
-        <section className="article_voteButtons">
-          {articleById.votes !== undefined ? (
-            <VoteButtons
-              votes={articleById.votes}
-              article_id={articleById.article_id}
-              isComment={false}
-              author={articleById.author}
+    if (isLoading) {
+      return <h3>Loading...</h3>;
+    } else {
+      return (
+        <section>
+          <section className="article_links">
+            <Link to="/">Home</Link>
+            {" - "}
+            <Link to="/articles">Articles</Link>
+          </section>
+          <h1 className="article_title">{articleById.title}</h1>
+          <h4 className="article_dateTime">
+            Posted on: {this.formatDate(createdAt)} At: {createdAt.slice(11)}
+          </h4>
+          <p className="article_body">{articleById.body}</p>
+          <h4 className="article_author">Author: {articleById.author}</h4>
+          <section className="article_voteButtons">
+            {articleById.votes !== undefined ? (
+              <VoteButtons
+                votes={articleById.votes}
+                article_id={articleById.article_id}
+                isComment={false}
+                author={articleById.author}
+                user={user}
+              />
+            ) : null}
+          </section>
+          <h2 className="articleComments_header">Comments</h2>
+          <PostComment pushComment={this.pushComment} />{" "}
+          <p className="articleComments_numOfComments">
+            Number of comments: {comments.length}
+          </p>
+          <ul>
+            <FormatComments
               user={user}
+              comments={comments}
+              handleCommentDelete={this.handleCommentDelete}
             />
-          ) : null}
+          </ul>
         </section>
-        <h2 className="articleComments_header">Comments</h2>
-        <PostComment pushComment={this.pushComment} />{" "}
-        <p className="articleComments_numOfComments">
-          Number of comments: {comments.length}
-        </p>
-        <ul>
-          <FormatComments
-            user={user}
-            comments={comments}
-            handleCommentDelete={this.handleCommentDelete}
-          />
-        </ul>
-      </section>
-    );
+      );
+    }
   }
 }
 
