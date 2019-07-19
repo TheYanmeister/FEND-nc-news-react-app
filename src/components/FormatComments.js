@@ -3,6 +3,7 @@ import DeleteButton from "./DeleteButton";
 import VoteButtons from "./VoteButtons";
 
 const FormatComments = props => {
+  const { user } = props;
   return props.comments.map(comment => (
     <li key={comment.comment_id}>
       <p className="articleComments_body">{comment.body}</p>
@@ -19,14 +20,16 @@ const FormatComments = props => {
           user={props.user}
         />
       </section>
-      <section className="articleComments_deleteButton">
-        <DeleteButton
-          user={props.user}
-          author={comment.author}
-          handleCommentDelete={props.handleCommentDelete}
-          comment_id={comment.comment_id}
-        />
-      </section>
+      {user === comment.author ? (
+        <section className="articleComments_deleteButton">
+          <DeleteButton
+            user={user}
+            author={comment.author}
+            handleCommentDelete={props.handleCommentDelete}
+            comment_id={comment.comment_id}
+          />
+        </section>
+      ) : null}
     </li>
   ));
 };
