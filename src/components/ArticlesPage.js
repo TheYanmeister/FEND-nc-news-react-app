@@ -33,21 +33,6 @@ class ArticlesPage extends Component {
     return <ArticleCard articles={this.state.articles} />;
   };
 
-  orderArticles = articles => {
-    const { orderBy } = this.state;
-    const sortedArticles = [...articles];
-    if (orderBy === "date") return articles;
-    else if (orderBy === "comments") {
-      return sortedArticles.sort((a, b) => {
-        return b.comment_count - a.comment_count;
-      });
-    } else {
-      return sortedArticles.sort((a, b) => {
-        return b.votes - a.votes;
-      });
-    }
-  };
-
   setFilter = event => {
     this.setState({ [event.target.name]: event.target.value });
   };

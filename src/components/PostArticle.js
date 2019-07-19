@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import * as api from "./api.js";
 
 class PostArticle extends Component {
@@ -18,8 +18,12 @@ class PostArticle extends Component {
     event.preventDefault();
     const { user } = this.props;
     const { currentBody, currentTitle, currentTopic } = this.state;
-    api.postArticle(user, currentTitle, currentTopic, currentBody);
-    this.setState({ currentBody: "", currentTitle: "", currentTopic: "" });
+    api
+      .postArticle(user, currentTitle, currentTopic, currentBody)
+      .then(({ article }) => {
+        console.log(article);
+        navigate(`/articles/${article.article_id}`);
+      });
   };
 
   render() {
