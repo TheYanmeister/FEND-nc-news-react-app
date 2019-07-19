@@ -27,6 +27,7 @@ class HomePage extends Component {
 
   render() {
     const { user } = this.props;
+    const filteredArticles = this.filterArticles();
     return (
       <section className="homePage">
         <p className="homePage_user">Logged in as: {user}</p>
@@ -39,7 +40,7 @@ class HomePage extends Component {
           <Link to="/articles/post">Post an Article</Link>
         </p>
         <section>
-          <ArticleCard articles={this.filterArticles()} />
+          <ArticleCard articles={filteredArticles} />
         </section>
       </section>
     );

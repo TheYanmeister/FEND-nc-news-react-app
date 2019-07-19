@@ -3,7 +3,7 @@ import { Link, navigate } from "@reach/router";
 import * as api from "./api.js";
 import VoteButtons from "./VoteButtons";
 import PostComment from "./PostComment";
-import DeleteButton from "./DeleteButton";
+import FormatComments from "./FormatComments";
 
 class Article extends Component {
   state = { articleById: { created_at: "" }, comments: [], error: false };
@@ -41,53 +41,6 @@ class Article extends Component {
     );
   };
 
-  formatComments = () => {
-    const { comments } = this.state;
-    const { user } = this.props;
-    return comments.map(comment => (
-      <li key={comment.comment_id}>
-        <p className="articleComments_body">{comment.body}</p>
-        <br /> <p className="articleComments_author">
-          User: {comment.author}
-        </p>{" "}
-        <br />{" "}
-        <section className="articlesComments_voteButtons">
-          <VoteButtons
-            votes={comment.votes}
-            comment_id={comment.comment_id}
-            isComment={true}
-            author={comment.author}
-            user={user}
-          />
-        </section>
-        <section className="articleComments_deleteButton">
-          <DeleteButton
-            user={user}
-            author={comment.author}
-            handleCommentDelete={this.handleCommentDelete}
-            comment_id={comment.comment_id}
-          />
-        </section>
-      </li>
-    ));
-  };
-
-  renderVoteButtons = () => {
-    const { articleById } = this.state;
-    const { user } = this.props;
-    if (articleById.votes !== undefined) {
-      return (
-        <VoteButtons
-          votes={articleById.votes}
-          article_id={articleById.article_id}
-          isComment={false}
-          author={articleById.author}
-          user={user}
-        />
-      );
-    }
-  };
-
   pushComment = commentBody => {
     const { user, article_id } = this.props;
     api
@@ -101,6 +54,7 @@ class Article extends Component {
 
   render() {
     const { articleById, comments } = this.state;
+    const { user } = this.props;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
       .slice(0, -8);
@@ -118,14 +72,28 @@ class Article extends Component {
         <p className="article_body">{articleById.body}</p>
         <h4 className="article_author">Author: {articleById.author}</h4>
         <section className="article_voteButtons">
-          {this.renderVoteButtons()}
+          {articleById.votes !== undefined ? (
+            <VoteButtons
+              votes={articleById.votes}
+              article_id={articleById.article_id}
+              isComment={false}
+              author={articleById.author}
+              user={user}
+            />
+          ) : null}
         </section>
         <h2 className="articleComments_header">Comments</h2>
         <PostComment pushComment={this.pushComment} />{" "}
         <p className="articleComments_numOfComments">
           Number of comments: {comments.length}
         </p>
-        <ul>{this.formatComments()}</ul>
+        <ul>
+          <FormatComments
+            user={user}
+            comments={comments}
+            handleCommentDelete={this.handleCommentDelete}
+          />
+        </ul>
       </section>
     );
   }
