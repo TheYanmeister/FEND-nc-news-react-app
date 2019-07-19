@@ -19,6 +19,9 @@ const formatArticleCard = props => {
         </p>
         <p className="articleCards_author">Author: {article.author}</p>
         <br />
+        <p>
+          Comment count: {article.comment_count} | Votes: {article.votes}
+        </p>
       </section>
     );
   });

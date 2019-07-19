@@ -39,6 +39,7 @@ class HomePage extends Component {
           {" - "}
           <Link to="/articles/post">Post an Article</Link>
         </p>
+        <p>Here's one article from each topic</p>
         <section>
           <ArticleCard articles={filteredArticles} />
         </section>

@@ -43,6 +43,10 @@ class ArticlesPage extends Component {
     }
   };
 
+  setFilter = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     return (
       <section>
@@ -56,24 +60,14 @@ class ArticlesPage extends Component {
         <br />
         <p className="articlesPage_filterAndOrderBoxes">
           Filter By:{" "}
-          <select
-            name="topic_filter"
-            onChange={event =>
-              this.setState({ topicFilter: event.target.value })
-            }
-          >
+          <select name="topicFilter" onChange={this.setFilter}>
             <option value="all">All</option>
             <option value="cooking">Cooking</option>
             <option value="coding">Coding</option>
             <option value="football">Football</option>
           </select>{" "}
           Order By:
-          <select
-            name="order_by"
-            onChange={event => {
-              this.setState({ orderBy: event.target.value });
-            }}
-          >
+          <select name="orderBy" onChange={this.setFilter}>
             <option value="date">Date Posted</option>
             <option value="votes">Number of Votes</option>
             <option value="comments">Number of Comments</option>
