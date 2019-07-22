@@ -52,8 +52,8 @@ class PostArticle extends Component {
             <input
               type="text"
               name="currentTitle"
-              placeholder="title"
               onChange={this.handleChange}
+              placeholder="Title"
               value={currentTitle}
               autoComplete="off"
               className="postArticle_titleBox"
@@ -75,20 +75,21 @@ class PostArticle extends Component {
             </select>
           </label>
           <br />
-          <label>
-            Body:
-            <input
+          <p className="postArticle_bodyBoxLabel">
+            Article:
+            <br />
+            <textarea
               className="postArticle_bodyBox"
               type="text"
               name="currentBody"
-              placeholder="body"
               onChange={this.handleChange}
               value={currentBody}
               autoComplete="off"
+              rows="12"
             />
             <br />
             This field must contain at least one period [ . ]
-          </label>
+          </p>
           <br />
           <button
             className="postArticle_submitButton"

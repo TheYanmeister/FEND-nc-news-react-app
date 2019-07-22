@@ -180,15 +180,21 @@
 }
 
 .postArticle_titleBox {
-  width: 1300px;
+  width: 1275px;
   margin-bottom: 20px;
   background: white;
+  margin-left: 7px;
 }
 
 .postArticle_bodyBox {
-  width: 1300px;
-  margin-top: 20px;
+  width: 1275px;
   background: white;
+  margin-left: 45px;
+}
+
+.postArticle_bodyBoxLabel {
+  margin-top: 20px;
+  text-align: left;
 }
 
 .postArticle_topicSelect {
