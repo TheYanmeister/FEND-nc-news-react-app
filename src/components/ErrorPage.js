@@ -8,9 +8,15 @@ const ErrorPage = props => {
     <section className="errorPage">
       <h3>Status: {status}</h3>
       {status === 404 ? (
-        <p>There doesn't seem to be anything here sorry m8</p>
+        <p>
+          There doesn't seem to be anything here sorry m8, this page doesn't
+          exist at this current moment.
+        </p>
       ) : (
-        <p>Bad request. Article ids only consist of integers</p>
+        <p>
+          Bad request. Reminder when searching for articles that article ids
+          should only consist of integers and nothing else.
+        </p>
       )}
       <Link to="/">Home</Link>
     </section>

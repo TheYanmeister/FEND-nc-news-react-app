@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HomePage from "./components/HomePage";
-import { Router } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import ErrorPage from "./components/ErrorPage";
 import ArticlesPage from "./components/ArticlesPage";
 import Article from "./components/Article";
@@ -16,7 +16,11 @@ class App extends Component {
     const { user } = this.state;
     return (
       <div className="App">
-        <h1 className="header">Northcoders News</h1>
+        <h1 className="header1">
+          <Link to="/" className="header2">
+            Northcoders News
+          </Link>
+        </h1>
         <Router>
           <HomePage path="/" user={user} />
           <ArticlesPage path="/articles" />

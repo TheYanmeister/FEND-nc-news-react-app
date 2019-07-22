@@ -9,14 +9,17 @@
   font-size: 18px;
 }
 
-.header {
-  font-family: "Overpass", sans-serif;
-  font-size: 50px;
-  padding: 0px;
+.header1 {
+  position: fixed;
   text-decoration: underline;
   background: rgb(111, 197, 255);
-  position: fixed;
   width: 100%;
+}
+
+.header2 {
+  font-family: "Overpass", sans-serif;
+  font-size: 50px;
+  background: rgb(111, 197, 255);
 }
 
 .homePage_user {
@@ -170,13 +173,16 @@
 
 .postArticle_titleBox {
   width: 1300px;
+  margin-bottom: 20px;
 }
 
 .postArticle_bodyBox {
   width: 1300px;
+  margin-top: 20px;
 }
 
 .postArticle_submitButton {
+  margin-top: 20px;
   text-transform: uppercase;
   padding: 5px;
 }

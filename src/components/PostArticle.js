@@ -21,7 +21,6 @@ class PostArticle extends Component {
     api
       .postArticle(user, currentTitle, currentTopic, currentBody)
       .then(({ article }) => {
-        console.log(article);
         navigate(`/articles/${article.article_id}`);
       });
   };
@@ -37,7 +36,6 @@ class PostArticle extends Component {
           <Link to="/articles">All Articles</Link>
         </p>
         <p>All fields are required</p>
-        <br />
         <br />
         <form
           className="postArticle_form"
@@ -62,7 +60,6 @@ class PostArticle extends Component {
             />
           </label>
           <br />
-          <br />
           <label>
             Topic:
             <select
@@ -76,7 +73,6 @@ class PostArticle extends Component {
               <option value="football">Football</option>
             </select>
           </label>
-          <br />
           <br />
           <label>
             Body:
@@ -92,7 +88,6 @@ class PostArticle extends Component {
             <br />
             This field must contain at least one period [ . ]
           </label>
-          <br />
           <br />
           <button
             className="postArticle_submitButton"
