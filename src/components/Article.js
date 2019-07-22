@@ -8,9 +8,9 @@ import FormatComments from "./FormatComments";
 class Article extends Component {
   state = {
     articleById: { created_at: "" },
-    comments: [],
     error: false,
-    isLoading: true
+    isLoading: true,
+    numOfComments: 0
   };
 
   componentDidMount() {
@@ -20,13 +20,10 @@ class Article extends Component {
         this.setState({ articleById: article, isLoading: false })
       )
       .catch(error => {
+        console.log(error);
         const { status } = error.response;
-        if (status === 404 || status === 400)
-          navigate("/error", { state: { status } });
+        navigate("/error", { state: { status } });
       });
-    api
-      .fetchCommentsByArticle(this.props.article_id)
-      .then(comments => this.setState({ comments: comments.comments }));
   }
 
   formatDate = createdAt => {
@@ -59,9 +56,13 @@ class Article extends Component {
       });
   };
 
+  getCommentCount = numOfComments => {
+    this.setState({ numOfComments });
+  };
+
   render() {
-    const { articleById, comments, isLoading } = this.state;
-    const { user } = this.props;
+    const { articleById, comments, isLoading, numOfComments } = this.state;
+    const { user, article_id } = this.props;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
       .slice(0, -8);
@@ -95,13 +96,15 @@ class Article extends Component {
           <h2 className="articleComments_header">Comments</h2>
           <PostComment pushComment={this.pushComment} />{" "}
           <p className="articleComments_numOfComments">
-            Number of comments: {comments.length}
+            Number of comments: {numOfComments}
           </p>
           <ul>
             <FormatComments
               user={user}
               comments={comments}
               handleCommentDelete={this.handleCommentDelete}
+              article_id={article_id}
+              getCommentCount={this.getCommentCount}
             />
           </ul>
         </section>

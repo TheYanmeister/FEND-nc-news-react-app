@@ -29,10 +29,6 @@ class ArticlesPage extends Component {
     }
   }
 
-  listArticles = () => {
-    return <ArticleCard articles={this.state.articles} />;
-  };
-
   setFilter = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -63,7 +59,9 @@ class ArticlesPage extends Component {
             <option value="comment_count">Number of Comments</option>
           </select>
         </p>
-        <ul>{this.listArticles()}</ul>
+        <ul>
+          <ArticleCard articles={this.state.articles} />
+        </ul>
       </section>
     );
   }
