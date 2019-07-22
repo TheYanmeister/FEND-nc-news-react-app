@@ -85,6 +85,10 @@
   font-size: 20px;
 }
 
+.articlesPage_selectBoxes {
+  background: white;
+}
+
 .articlesPage_filterAndOrderBoxes {
   padding-bottom: 20px;
 }
@@ -116,6 +120,10 @@
 
 .article_voteButtons {
   padding-bottom: 50px;
+}
+
+.article_loading {
+  padding-top: 200px;
 }
 
 .articleComments_header {
@@ -174,17 +182,28 @@
 .postArticle_titleBox {
   width: 1300px;
   margin-bottom: 20px;
+  background: white;
 }
 
 .postArticle_bodyBox {
   width: 1300px;
   margin-top: 20px;
+  background: white;
+}
+
+.postArticle_topicSelect {
+  background: white;
 }
 
 .postArticle_submitButton {
   margin-top: 20px;
   text-transform: uppercase;
   padding: 5px;
+  background: white;
+}
+
+.postComment_inputBox {
+  background: white;
 }
 
 .errorPage {

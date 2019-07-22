@@ -66,6 +66,7 @@ class PostArticle extends Component {
               name="currentTopic"
               value={currentTopic}
               onChange={this.handleChange}
+              className="postArticle_topicSelect"
             >
               <option value="" />
               <option value="cooking">Cooking</option>

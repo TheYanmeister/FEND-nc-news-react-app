@@ -24,6 +24,7 @@ class PostComment extends Component {
             value={userComment}
             onChange={this.handleChange}
             placeholder="required"
+            className="postComment_inputBox"
           />
         </label>{" "}
         <button disabled={userComment === ""}>Submit Comment</button>

@@ -67,7 +67,7 @@ class Article extends Component {
       .replace(/[A-Z]/g, " ")
       .slice(0, -8);
     if (isLoading) {
-      return <h3>Loading...</h3>;
+      return <h3 className="article_loading">Loading...</h3>;
     } else {
       return (
         <section>
