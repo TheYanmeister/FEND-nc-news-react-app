@@ -180,3 +180,7 @@
   text-transform: uppercase;
   padding: 5px;
 }
+
+.errorPage {
+  padding-top: 100px;
+}

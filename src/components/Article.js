@@ -21,8 +21,8 @@ class Article extends Component {
       )
       .catch(error => {
         const { status } = error.response;
-        if (status === 404) navigate("/404");
-        if (status === 400) navigate("/articles/badrequest");
+        if (status === 404 || status === 400)
+          navigate("/error", { state: { status } });
       });
     api
       .fetchCommentsByArticle(this.props.article_id)
