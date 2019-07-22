@@ -13,15 +13,18 @@ const ArticleCard = props => {
             <p className="articleCards_body">
               {article.body.slice(0, article.body.indexOf(".") + 1)}..{" "}
             </p>
-            <p>
+            <p className="articleCards_link">
               {" "}
-              <Link to={`/articles/${article.article_id}`}>
+              <Link
+                className="articleCards_link"
+                to={`/articles/${article.article_id}`}
+              >
                 (click to read the full article)
               </Link>
             </p>
             <p className="articleCards_author">Author: {article.author}</p>
             <br />
-            <p>
+            <p className="articleCards_commentAndVoteCount">
               Comment count: {article.comment_count} | Votes: {article.votes}
             </p>
           </section>
