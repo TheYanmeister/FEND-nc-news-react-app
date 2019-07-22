@@ -27,7 +27,9 @@ class PostComment extends Component {
             className="postComment_inputBox"
           />
         </label>{" "}
-        <button disabled={userComment === ""}>Submit Comment</button>
+        <button disabled={userComment === ""} className="postComment_button">
+          Submit Comment
+        </button>
       </form>
     );
   }

@@ -150,6 +150,10 @@
   font-size: 25px;
 }
 
+.postComment_button {
+  background: white;
+}
+
 .articleComments {
   margin-bottom: 20px;
   border-top: 1px solid grey;
