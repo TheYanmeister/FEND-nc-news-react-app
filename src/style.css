@@ -103,8 +103,8 @@
 }
 
 .article_body {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .article_author {
@@ -121,8 +121,8 @@
 }
 
 .articleComments_body {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
 }
 
 .articleComments_author {
@@ -139,12 +139,17 @@
   font-size: 25px;
 }
 
+.articleComments {
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+}
+
 .articlesComments_voteButtons {
   padding-bottom: 10px;
 }
 
 .articleComments_deleteButton {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .postArticle_header {

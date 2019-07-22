@@ -5,7 +5,7 @@ import VoteButtons from "./VoteButtons";
 const FormatComments = props => {
   const { user } = props;
   return props.comments.map(comment => (
-    <li key={comment.comment_id}>
+    <li key={comment.comment_id} className="articleComments">
       <p className="articleComments_body">{comment.body}</p>
       <br /> <p className="articleComments_author">
         User: {comment.author}
