@@ -27,19 +27,9 @@ followed by
 npm install
 ```
 
-This is the same for front or back-end.
+## Running a Local Version
 
-## Running Tests on the Back-end
-
-On the back-end once the instalation instructions have been followed and you have postgresql running. You can run the tests using the script
-
-```
-npm run app-test
-```
-
-## Running a Local Version of the Front-end
-
-After following the instruction for the front-end installation run this script to get a localy host the app
+After following the instruction for the installation run this script to get a localy host the app
 
 ```
 npm start
