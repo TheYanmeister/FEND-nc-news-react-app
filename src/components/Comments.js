@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DeleteButton from "./DeleteButton";
 import VoteButtons from "./VoteButtons";
 import * as api from "./api";
+import { navigate } from "@reach/router";
 
 class Comments extends Component {
   state = { comments: [] };
@@ -9,7 +10,11 @@ class Comments extends Component {
   componentDidMount() {
     api
       .fetchCommentsByArticle(this.props.article_id)
-      .then(comments => this.setState({ comments: comments.comments }));
+      .then(comments => this.setState({ comments: comments.comments }))
+      .catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {

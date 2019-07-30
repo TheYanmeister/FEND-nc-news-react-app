@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import * as api from "./api.js";
 import ArticlesList from "./ArticlesList";
 
@@ -14,7 +14,11 @@ class ArticlesPage extends Component {
     const { topicFilter, orderBy } = this.state;
     api
       .fetchOrderedArticlesByTopic(topicFilter, orderBy)
-      .then(articles => this.setState({ articles }));
+      .then(articles => this.setState({ articles }))
+      .catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -25,7 +29,11 @@ class ArticlesPage extends Component {
     ) {
       api
         .fetchOrderedArticlesByTopic(topicFilter, orderBy)
-        .then(articles => this.setState({ articles }));
+        .then(articles => this.setState({ articles }))
+        .catch(error => {
+          const { status } = error.response;
+          navigate("/error", { state: { status } });
+        });
     }
   }
 

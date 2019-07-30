@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import * as api from "./api.js";
 import ArticlesList from "./ArticlesList";
 
@@ -9,7 +9,11 @@ class HomePage extends Component {
   componentDidMount() {
     api
       .fetchOrderedArticlesByTopic("", "created_at")
-      .then(articles => this.setState({ articles: articles }));
+      .then(articles => this.setState({ articles: articles }))
+      .catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
+      });
   }
 
   getFirstArticleOfEachTopic = () => {

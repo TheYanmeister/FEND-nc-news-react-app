@@ -35,13 +35,19 @@ class Article extends Component {
 
   handleCommentDelete = event => {
     const { value } = event.target;
-    api.deleteComment(value).then(
-      this.setState(prevState => ({
-        comments: prevState.comments.filter(
-          comment => comment.comment_id !== +value
-        )
-      }))
-    );
+    api
+      .deleteComment(value)
+      .then(
+        this.setState(prevState => ({
+          comments: prevState.comments.filter(
+            comment => comment.comment_id !== +value
+          )
+        }))
+      )
+      .catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
+      });
   };
 
   addNewComment = commentBody => {
@@ -52,6 +58,10 @@ class Article extends Component {
         this.setState(prevState => ({
           comments: [comment, ...prevState.comments]
         }));
+      })
+      .catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
       });
   };
 

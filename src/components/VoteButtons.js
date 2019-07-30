@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "./api.js";
+import { navigate } from "@reach/router";
 
 class VoteButtons extends Component {
   state = {
@@ -23,9 +24,15 @@ class VoteButtons extends Component {
     const { voteChange } = this.state;
     const { article_id, isComment, comment_id } = this.props;
     if (isComment === false)
-      return api.patchVotesForArticle(article_id, voteChange);
+      return api.patchVotesForArticle(article_id, voteChange).catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
+      });
     else if (isComment === true)
-      return api.patchVotesForComment(comment_id, voteChange);
+      return api.patchVotesForComment(comment_id, voteChange).catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
+      });
   };
 
   componentDidMount() {

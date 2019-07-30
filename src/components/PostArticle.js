@@ -22,6 +22,10 @@ class PostArticle extends Component {
       .postArticle(user, currentTitle, currentTopic, currentBody)
       .then(({ article }) => {
         navigate(`/articles/${article.article_id}`);
+      })
+      .catch(error => {
+        const { status } = error.response;
+        navigate("/error", { state: { status } });
       });
   };
 
