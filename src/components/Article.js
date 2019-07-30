@@ -3,7 +3,7 @@ import { Link, navigate } from "@reach/router";
 import * as api from "./api.js";
 import VoteButtons from "./VoteButtons";
 import PostComment from "./PostComment";
-import FormatComments from "./FormatComments";
+import Comments from "./Comments";
 
 class Article extends Component {
   state = {
@@ -44,7 +44,7 @@ class Article extends Component {
     );
   };
 
-  pushComment = commentBody => {
+  addNewComment = commentBody => {
     const { user, article_id } = this.props;
     api
       .postCommentToArticle(article_id, user, commentBody)
@@ -82,23 +82,21 @@ class Article extends Component {
           <p className="article_body">{articleById.body}</p>
           <h4 className="article_author">Author: {articleById.author}</h4>
           <section className="article_voteButtons">
-            {articleById.votes !== undefined ? (
-              <VoteButtons
-                votes={articleById.votes}
-                article_id={articleById.article_id}
-                isComment={false}
-                author={articleById.author}
-                user={user}
-              />
-            ) : null}
+            <VoteButtons
+              votes={articleById.votes}
+              article_id={articleById.article_id}
+              isComment={false}
+              author={articleById.author}
+              user={user}
+            />
           </section>
           <h2 className="articleComments_header">Comments</h2>
-          <PostComment pushComment={this.pushComment} />{" "}
+          <PostComment addNewComment={this.addNewComment} />{" "}
           <p className="articleComments_numOfComments">
             Number of comments: {numOfComments}
           </p>
           <ul>
-            <FormatComments
+            <Comments
               user={user}
               comments={comments}
               handleCommentDelete={this.handleCommentDelete}

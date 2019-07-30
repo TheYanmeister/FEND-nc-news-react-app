@@ -3,7 +3,7 @@ import DeleteButton from "./DeleteButton";
 import VoteButtons from "./VoteButtons";
 import * as api from "./api";
 
-class FormatComments extends Component {
+class Comments extends Component {
   state = { comments: [] };
 
   componentDidMount() {
@@ -52,4 +52,4 @@ class FormatComments extends Component {
   }
 }
 
-export default FormatComments;
+export default Comments;
