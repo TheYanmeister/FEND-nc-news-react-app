@@ -8,8 +8,9 @@ class PostComment extends Component {
   };
 
   handleSubmit = event => {
+    const { addNewComment } = this.props;
     event.preventDefault();
-    this.props.pushComment(this.state.userComment);
+    addNewComment(this.state.userComment);
     this.setState({ userComment: "" });
   };
 
