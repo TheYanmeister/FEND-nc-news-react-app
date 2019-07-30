@@ -41,7 +41,6 @@ export const postCommentToArticle = (article_id, username, body) => {
 };
 
 export const postArticle = (author, title, topic, body) => {
-  console.log(author, title, topic, body);
   return request
     .post("articles", { author, title, topic, body })
     .then(({ data }) => data);

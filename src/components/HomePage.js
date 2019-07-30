@@ -12,7 +12,7 @@ class HomePage extends Component {
       .then(articles => this.setState({ articles: articles }));
   }
 
-  filterArticles = () => {
+  getFirstArticleOfEachTopic = () => {
     const { articles } = this.state;
     const filteredArticles = [];
     const articleTally = {};
@@ -27,7 +27,7 @@ class HomePage extends Component {
 
   render() {
     const { user } = this.props;
-    const filteredArticles = this.filterArticles();
+    const filteredArticles = this.getFirstArticleOfEachTopic();
     return (
       <section className="homePage">
         <p className="homePage_user">Logged in as: {user}</p>

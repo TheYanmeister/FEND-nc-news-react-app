@@ -20,7 +20,6 @@ class Article extends Component {
         this.setState({ articleById: article, isLoading: false })
       )
       .catch(error => {
-        console.log(error);
         const { status } = error.response;
         navigate("/error", { state: { status } });
       });
