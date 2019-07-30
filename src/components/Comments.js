@@ -8,19 +8,30 @@ class Comments extends Component {
   state = { comments: [] };
 
   componentDidMount() {
+    const { getCommentCount } = this.props;
     api
       .fetchCommentsByArticle(this.props.article_id)
-      .then(comments => this.setState({ comments: comments.comments }))
+      .then(comments =>
+        this.setState({ comments: comments.comments }, () =>
+          getCommentCount(this.state.comments.length)
+        )
+      )
       .catch(error => {
         const { status } = error.response;
         navigate("/error", { state: { status } });
       });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { comments } = this.state;
-    const { getCommentCount } = this.props;
-    if (prevState.comments !== comments) getCommentCount(comments.length);
+  componentDidUpdate(prevProps) {
+    const { getCommentCount, newComment } = this.props;
+    if (prevProps.newComment !== newComment) {
+      this.setState(
+        prevState => ({
+          comments: [newComment, ...prevState.comments]
+        }),
+        () => getCommentCount(this.state.comments.length)
+      );
+    }
   }
 
   render() {

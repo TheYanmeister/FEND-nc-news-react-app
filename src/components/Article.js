@@ -10,7 +10,8 @@ class Article extends Component {
     articleById: { created_at: "" },
     error: false,
     isLoading: true,
-    numOfComments: 0
+    numOfComments: 0,
+    newComment: {}
   };
 
   componentDidMount() {
@@ -55,9 +56,9 @@ class Article extends Component {
     api
       .postCommentToArticle(article_id, user, commentBody)
       .then(({ comment }) => {
-        this.setState(prevState => ({
-          comments: [comment, ...prevState.comments]
-        }));
+        this.setState({
+          newComment: comment
+        });
       })
       .catch(error => {
         const { status } = error.response;
@@ -70,7 +71,7 @@ class Article extends Component {
   };
 
   render() {
-    const { articleById, comments, isLoading, numOfComments } = this.state;
+    const { articleById, newComment, isLoading, numOfComments } = this.state;
     const { user, article_id } = this.props;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
@@ -108,7 +109,7 @@ class Article extends Component {
           <ul>
             <Comments
               user={user}
-              comments={comments}
+              newComment={newComment}
               handleCommentDelete={this.handleCommentDelete}
               article_id={article_id}
               getCommentCount={this.getCommentCount}
