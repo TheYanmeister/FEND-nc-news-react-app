@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api.js";
-import ArticleCard from "./ArticleCard";
+import ArticlesList from "./ArticlesList";
 
 class HomePage extends Component {
   state = { articles: [] };
@@ -41,7 +41,7 @@ class HomePage extends Component {
         </p>
         <p>Here's the most recent article from each topic</p>
         <section>
-          <ArticleCard articles={filteredArticles} />
+          <ArticlesList articles={filteredArticles} />
         </section>
       </section>
     );

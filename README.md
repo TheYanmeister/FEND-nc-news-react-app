@@ -10,15 +10,14 @@ Link to the back-end repository: https://github.com/TheYanmeister/northcoders-ne
 
 ## Prerequisites
 
-You'll need npm installed as well as postgresql installed and running.
+You'll need node installed as well as postgresql installed and running.
 
 ## Installing
 
-Go to the github repo via the link and copy the clone link.
 Navigate to where you want to clone the repo to and run
 
 ```
-git clone url-here
+git clone https://github.com/TheYanmeister/FEND-nc-news-react-app.git
 ```
 
 followed by
@@ -26,6 +25,14 @@ followed by
 ```
 npm install
 ```
+
+## Dependecies
+
+@reach/router  
+axios  
+react  
+react-dom  
+react-scripts
 
 ## Running a Local Version
 
@@ -38,3 +45,7 @@ npm start
 ## Built With
 
 React
+
+## Author
+
+Yannick van der Heiden

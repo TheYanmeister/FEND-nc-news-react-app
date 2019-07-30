@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api.js";
-import ArticleCard from "./ArticleCard";
+import ArticlesList from "./ArticlesList";
 
 class ArticlesPage extends Component {
   state = {
@@ -68,7 +68,7 @@ class ArticlesPage extends Component {
           </select>
         </p>
         <ul>
-          <ArticleCard articles={this.state.articles} />
+          <ArticlesList articles={this.state.articles} />
         </ul>
       </section>
     );

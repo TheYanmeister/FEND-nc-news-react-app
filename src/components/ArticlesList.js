@@ -1,30 +1,30 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const ArticleCard = props => {
+const ArticlesList = props => {
   return (
     <section>
       {props.articles.map(article => {
         return (
-          <section key={article.article_id} className="articleCards">
-            <h3 className="articleCards_title">
+          <section key={article.article_id} className="articlesList">
+            <h3 className="articlesList_title">
               In {article.topic}: {article.title}
             </h3>
-            <p className="articleCards_body">
+            <p className="articlesList_body">
               {article.body.slice(0, article.body.indexOf(".") + 1)}..{" "}
             </p>
-            <p className="articleCards_link">
+            <p className="articlesList_link">
               {" "}
               <Link
-                className="articleCards_link"
+                className="articlesList_link"
                 to={`/articles/${article.article_id}`}
               >
                 (click to read the full article)
               </Link>
             </p>
-            <p className="articleCards_author">Author: {article.author}</p>
+            <p className="articlesList_author">Author: {article.author}</p>
             <br />
-            <p className="articleCards_commentAndVoteCount">
+            <p className="articlesList_commentAndVoteCount">
               Comment count: {article.comment_count} | Votes: {article.votes}
             </p>
           </section>
@@ -34,4 +34,4 @@ const ArticleCard = props => {
   );
 };
 
-export default ArticleCard;
+export default ArticlesList;
