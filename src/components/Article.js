@@ -11,7 +11,8 @@ class Article extends Component {
     error: false,
     isLoading: true,
     numOfComments: 0,
-    newComment: {}
+    newComment: {},
+    deletedCommentId: null
   };
 
   componentDidMount() {
@@ -38,13 +39,7 @@ class Article extends Component {
     const { value } = event.target;
     api
       .deleteComment(value)
-      .then(
-        this.setState(prevState => ({
-          comments: prevState.comments.filter(
-            comment => comment.comment_id !== +value
-          )
-        }))
-      )
+      .then(this.setState({ deletedCommentId: value }))
       .catch(error => {
         const { status } = error.response;
         navigate("/error", { state: { status } });
@@ -71,7 +66,13 @@ class Article extends Component {
   };
 
   render() {
-    const { articleById, newComment, isLoading, numOfComments } = this.state;
+    const {
+      articleById,
+      newComment,
+      isLoading,
+      numOfComments,
+      deletedCommentId
+    } = this.state;
     const { user, article_id } = this.props;
     const createdAt = articleById.created_at
       .replace(/[A-Z]/g, " ")
@@ -108,6 +109,7 @@ class Article extends Component {
           </p>
           <ul>
             <Comments
+              deletedCommentId={deletedCommentId}
               user={user}
               newComment={newComment}
               handleCommentDelete={this.handleCommentDelete}

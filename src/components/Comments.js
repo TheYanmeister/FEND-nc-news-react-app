@@ -23,11 +23,21 @@ class Comments extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { getCommentCount, newComment } = this.props;
+    const { getCommentCount, newComment, deletedCommentId } = this.props;
     if (prevProps.newComment !== newComment) {
-      this.setState(
+      return this.setState(
         prevState => ({
           comments: [newComment, ...prevState.comments]
+        }),
+        () => getCommentCount(this.state.comments.length)
+      );
+    }
+    if (prevProps.deletedCommentId !== deletedCommentId) {
+      return this.setState(
+        prevState => ({
+          comments: prevState.comments.filter(
+            comment => +comment.comment_id !== +deletedCommentId
+          )
         }),
         () => getCommentCount(this.state.comments.length)
       );
